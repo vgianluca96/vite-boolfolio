@@ -13,7 +13,7 @@ export default {
       url: 'http://127.0.0.1:8000/api/projects',
       projects: null,
       current_page: 1,
-      las_page: null,
+      last_page: null,
     }
   },
   methods: {
