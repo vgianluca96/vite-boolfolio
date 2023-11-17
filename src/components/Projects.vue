@@ -44,8 +44,11 @@ export default {
         this.apiCall(this.current_page)
         console.log(this.current_page);
       }
+    },
+    pageCall(n) {
+      this.current_page = n;
+      this.apiCall(this.current_page);
     }
-
   },
   mounted() {
     this.apiCall(this.current_page);
@@ -66,8 +69,15 @@ export default {
 
     <nav aria-label="Page navigation example py-2">
       <ul class="pagination">
-        <li class="page-item"><button @click="prevCall()" class="btn btn-primary">Prev</button></li>
-        <li class="page-item"><button @click="nextCall()" class="btn btn-primary">Next</button></li>
+        <li class="page-item">
+          <a href="javascript:void(0)" class="page-link" @click="prevCall()">Prev</a>
+        </li>
+        <li class="page-item" :class="{ 'active': current_page == n }" v-for="n in   this.last_page  ">
+          <a href="javascript:void(0)" class="page-link" @click="pageCall(n)">{{ n }}</a>
+        </li>
+        <li class="page-item">
+          <a href="javascript:void(0)" class="page-link" @click="nextCall()">Next</a>
+        </li>
       </ul>
     </nav>
   </div>
