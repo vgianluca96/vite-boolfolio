@@ -1,16 +1,16 @@
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Projects from './components/Projects.vue'
 
 export default {
   components: {
-    HelloWorld
+    Projects
   }
 }
 </script>
 
 <template>
   <main>
-    <HelloWorld />
+    <Projects />
   </main>
 </template>
 
