@@ -25,6 +25,10 @@ export default {
           {{ project.description }}
         </p>
       </div>
+      <div class="card-footer">
+        <router-link :to="{ name: 'single-project', params: { slug: project.slug } }"
+          class="navbar-brand">Details</router-link>
+      </div>
     </div>
   </div>
 </template>
