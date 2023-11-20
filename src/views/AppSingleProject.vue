@@ -1,47 +1,35 @@
 <script>
 
-import axios from '../../node_modules/axios'
+import { state } from '../state.js';
 
 export default {
     name: 'AppSingleProject',
     data() {
         return {
-            url: `http://127.0.0.1:8000/api/projects/${this.$route.params.slug}`,
-            project: null,
-            message: null,
+            state,
+            url: `/${this.$route.params.slug}`,
         }
 
     },
     methods: {
-        apiCall() {
-            axios
-                .get(this.url)
-                .then(response => {
-                    console.log(response)
-                    if (response.data.status == "failure") {
-                        this.message = response.data.result;
-                    } else {
-                        this.project = response.data.result;
-                    }
-                });
-        },
+
     },
     mounted() {
-        this.apiCall();
+        state.apiCallSingle(this.url);
     }
 
 }
 </script>
 
 <template>
-    <div class="container py-4" v-if="this.project">
+    <div class="container py-4" v-if="state.project">
         <h1>
-            Project <em>{{ this.project.title }}</em>
+            Project <em>{{ state.project.title }}</em>
         </h1>
     </div>
-    <div class="container py-4" v-else-if="this.message">
+    <div class="container py-4" v-else-if="state.message">
         <h1 class="text-center">
-            {{ this.message }}
+            {{ state.message }}
         </h1>
     </div>
     <div class="container py-4" v-else>

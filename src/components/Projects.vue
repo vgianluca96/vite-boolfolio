@@ -1,7 +1,7 @@
 <script>
 
-import axios from '../../node_modules/axios'
-import ProjectCard from './ProjectCard.vue'
+import ProjectCard from './ProjectCard.vue';
+import { state } from '../state.js';
 
 export default {
   name: 'Projects',
@@ -10,48 +10,30 @@ export default {
   },
   data() {
     return {
-      url: 'http://127.0.0.1:8000/api/projects',
-      projects: null,
+      state,
       current_page: 1,
-      last_page: null,
     }
   },
   methods: {
-    apiCall(postApiPage) {
-      axios
-        .get(this.url, {
-          params: {
-            page: postApiPage
-          }
-        })
-        .then(response => {
-          this.projects = response.data.result.data
-          this.last_page = response.data.result.last_page
-          console.log(response.data)
-          console.log(response.data.result.current_page)
-        });
-    },
     prevCall() {
       if (this.current_page > 1) {
         this.current_page--;
-        this.apiCall(this.current_page)
-        console.log(this.current_page);
+        state.apiCall(this.current_page);
       }
     },
     nextCall() {
-      if (this.current_page < this.last_page) {
+      if (this.current_page < state.last_page) {
         this.current_page++;
-        this.apiCall(this.current_page)
-        console.log(this.current_page);
+        state.apiCall(this.current_page);
       }
     },
     pageCall(n) {
       this.current_page = n;
-      this.apiCall(this.current_page);
+      state.apiCall(this.current_page);
     }
   },
   mounted() {
-    this.apiCall(this.current_page);
+    state.apiCall(this.current_page);
   }
 }
 
@@ -63,8 +45,13 @@ export default {
       All Projects
     </h1>
 
-    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 py-4 g-2">
-      <ProjectCard v-for="project in projects" :project="project" />
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 py-4 g-2" v-if="state.projects">
+      <ProjectCard v-for="project in state.projects" :project="project" />
+    </div>
+    <div v-else>
+      <h3>
+        Loading...
+      </h3>
     </div>
 
     <nav aria-label="Page navigation example py-2">
@@ -72,7 +59,7 @@ export default {
         <li class="page-item">
           <a href="javascript:void(0)" class="page-link" @click="prevCall()">Prev</a>
         </li>
-        <li class="page-item" :class="{ 'active': current_page == n }" v-for="n in   this.last_page  ">
+        <li class="page-item" :class="{ 'active': current_page == n }" v-for="n in state.last_page  ">
           <a href="javascript:void(0)" class="page-link" @click="pageCall(n)">{{ n }}</a>
         </li>
         <li class="page-item">
