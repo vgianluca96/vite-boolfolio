@@ -9,7 +9,6 @@ export default {
             state,
             url: `/${this.$route.params.slug}`,
         }
-
     },
     methods: {
 
@@ -17,7 +16,6 @@ export default {
     mounted() {
         state.apiCallSingle(this.url);
     }
-
 }
 </script>
 
