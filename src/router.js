@@ -5,6 +5,7 @@ import AppProjects from './views/AppProjects.vue';
 import AppSingleProject from './views/AppSingleProject.vue';
 import AppAbout from './views/AppAbout.vue';
 import AppContacts from './views/AppContacts.vue';
+import NotFound from './views/NotFound.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -33,6 +34,11 @@ const router = createRouter({
             path: '/contacts',
             name: 'contacts',
             component: AppContacts
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'NotFound',
+            component: NotFound
         },
     ]
 });

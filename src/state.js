@@ -7,7 +7,7 @@ export const state = reactive({
     projects: null,
     last_page: null,
     project: null,
-    message: null,
+    //message: null,
     apiCall(postApiPage) {
         axios
             .get(this.url + 's', {
@@ -16,23 +16,27 @@ export const state = reactive({
                 }
             })
             .then(response => {
+                //console.log(response)
                 this.projects = response.data.result.data
                 this.last_page = response.data.result.last_page
-                //console.log(response.data)
-                //console.log(this.projects)
-            });
+            })
+            .catch(err => console.log(err.message));
     },
-    apiCallSingle(urlSingle) {
+    apiCallSingle(urlSingle, router) {
         axios
             .get(this.url + urlSingle)
             .then(response => {
                 //console.log(response)
-                if (response.data.status == "failure") {
-                    this.message = response.data.result;
-                } else {
+                if (response.data.status == "success") {
                     this.project = response.data.result;
+                } else {
+                    //this.message = response.data.result;
+                    console.log('not found')
+                    router.push({ name: 'NotFound' });
                 }
-            });
+
+            })
+            .catch(err => console.log(err.message));
     },
     apiCallLatest(urlLatest) {
         axios
@@ -41,6 +45,6 @@ export const state = reactive({
                 //console.log(response)
                 this.projects = response.data.result;
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err.message));
     },
 })
