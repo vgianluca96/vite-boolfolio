@@ -2,23 +2,22 @@
 
 import { state } from '../state.js';
 import ProjectCard from '../components/ProjectCard.vue';
+import Pagination from '../components/Pagination.vue';
 
 export default {
-    name: 'HomeView',
+    name: 'ProjectsView',
     components: {
         ProjectCard,
+        Pagination
     },
     data() {
         return {
             state,
-            url: `/latest`,
+            url: `/${this.$route.params.slug}`,
         }
     },
-    methods: {
-
-    },
     mounted() {
-        state.apiCallLatest(this.url);
+        state.apiTechnologiesSingle(this.url, this.$router);
     }
 }
 </script>
@@ -26,12 +25,22 @@ export default {
 <template>
     <div class="container py-4">
 
-        <h1>This is the Home</h1>
-        <h3 class="pt-2">See the latest projects</h3>
-
-        <div class="row row-cols-3 py-4 g-2" v-if="state.projects">
-            <ProjectCard v-for="project in state.projects" :project="project" />
+        <div v-if="state.technology">
+            <div v-if="state.technology.projects.length > 0">
+                <h1>
+                    Projects associated to {{ state.technology.name }}
+                </h1>
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2">
+                    <ProjectCard v-for=" project in state.technology.projects " :project="project" />
+                </div>
+            </div>
+            <div v-else>
+                <p class="text-secondary">
+                    Oops! There are not projects associated to {{ state.technology.name }}
+                </p>
+            </div>
         </div>
+
         <div v-else>
             <p class="text-secondary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -43,6 +52,7 @@ export default {
                 Loading...
             </p>
         </div>
+
     </div>
 </template>
 

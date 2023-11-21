@@ -36,8 +36,8 @@ export default {
 </script>
 
 <template>
-  <nav aria-label="Page navigation example py-2">
-    <ul class="pagination">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
       <li class="page-item">
         <a href="javascript:void(0)" class="page-link" @click="prevCall()">Prev</a>
       </li>
