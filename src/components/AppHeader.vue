@@ -23,10 +23,10 @@ export default {
                             <router-link to="/projects" class="nav-link">Projects</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">About</a>
+                            <router-link to="/about" class="nav-link">About</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Contacts</a>
+                            <router-link to="/contacts" class="nav-link">Contacts</router-link>
                         </li>
                     </ul>
                 </div>
