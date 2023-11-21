@@ -4,7 +4,7 @@ import { state } from '../state.js';
 import ProjectCard from '../components/ProjectCard.vue';
 
 export default {
-    name: 'AppHome',
+    name: 'HomeView',
     components: {
         ProjectCard,
     },

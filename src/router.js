@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import AppHome from './views/AppHome.vue';
-import AppProjects from './views/AppProjects.vue';
-import AppSingleProject from './views/AppSingleProject.vue';
-import AppAbout from './views/AppAbout.vue';
-import AppContacts from './views/AppContacts.vue';
-import NotFound from './views/NotFound.vue';
+import HomeView from './views/HomeView.vue';
+import ProjectsView from './views/ProjectsView.vue';
+import SingleProjectView from './views/SingleProjectView.vue';
+import AboutView from './views/AboutView.vue';
+import ContactsView from './views/ContactsView.vue';
+import NotFoundView from './views/NotFoundView.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -13,32 +13,32 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: AppHome
+            component: HomeView
         },
         {
             path: '/projects',
             name: 'projects',
-            component: AppProjects
+            component: ProjectsView
         },
         {
             path: '/project/:slug',
             name: 'single-project',
-            component: AppSingleProject
+            component: SingleProjectView
         },
         {
             path: '/about',
             name: 'about',
-            component: AppAbout
+            component: AboutView
         },
         {
             path: '/contacts',
             name: 'contacts',
-            component: AppContacts
+            component: ContactsView
         },
         {
             path: '/:pathMatch(.*)*',
             name: 'NotFound',
-            component: NotFound
+            component: NotFoundView
         },
     ]
 });

@@ -3,7 +3,7 @@
 import { state } from '../state.js';
 
 export default {
-    name: 'AppSingleProject',
+    name: 'SingleProjectView',
     data() {
         return {
             state,

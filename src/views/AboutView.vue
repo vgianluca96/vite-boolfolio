@@ -1,15 +1,14 @@
 <script>
 
 export default {
-    name: 'NotFound',
-
+    name: 'AboutView',
 }
 
 </script>
 
 <template>
     <div class="container py-4">
-        <h1 class="text-center">404 -Not Found</h1>
+        <h1>About</h1>
     </div>
 </template>
 
