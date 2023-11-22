@@ -19,7 +19,7 @@ export const state = reactive({
                 }
             })
             .then(response => {
-                //console.log(response)
+                console.log(response.data.result.data)
                 this.projects = response.data.result.data
                 this.last_page = response.data.result.last_page
             })
@@ -54,7 +54,7 @@ export const state = reactive({
         axios
             .get(this.urlTech + 'ies')
             .then(response => {
-                //console.log(response)
+                console.log(response.data.result)
                 this.technologies = response.data.result;
             })
             .catch(err => console.log(err.message));
